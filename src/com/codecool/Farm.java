@@ -7,18 +7,15 @@ import com.codecool.plant.Shroomable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Farm {
+public class Farm implements RottenRiporter {
     private int numberOfPlants;
     private int totalProduction = 0;
-    private List<Plant> plants= new ArrayList<>();
+    private List<Plant> plants = new ArrayList<>();
     private List<EverGreen> everGreens = new ArrayList<>();
     private List<Shroomable> shroomables = new ArrayList<>();
 
 
-
-
-
-    public Farm(int numberOfPlants){
+    public Farm(int numberOfPlants) {
         this.numberOfPlants = numberOfPlants;
     }
 
@@ -30,9 +27,19 @@ public class Farm {
         return totalProduction;
     }
 
-    private void initPlants(){
+    private void initPlants() {
         //TODO implement factory methods
         for (int i = 0; i < numberOfPlants; i++) {
         }
     }
+
+    public boolean isThereRottenPlant() {
+        for (Shroomable shroomable : shroomables) {
+            if (shroomable.isRotten()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
+

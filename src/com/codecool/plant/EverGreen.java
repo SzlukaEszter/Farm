@@ -1,28 +1,32 @@
 package com.codecool.plant;
 
+import com.codecool.RottenRiporter;
+
 public abstract class EverGreen extends Plant{
 
-    protected int maxProduction = 70;
-    protected boolean isRotten = false;
-    protected int monthsPassed = 0;
+    protected int maxProduction;
 
-    public void growLeaves(){
+    protected int monthsPassed;
+
+    EverGreen(RottenRiporter rottenRiporter){
+        super(rottenRiporter);
+        maxProduction = 70;
+        monthsPassed = 0;
+    }
+
+    protected void growLeaves(){
         if (monthsPassed % 5 == 0){
-            actualProduction += 8;
+            monthlyProduction += 8;
         }
     }
 
-    public void speak(){
+    protected void speak(){
         System.out.println(name + " at full production");
     }
 
-    @Override
-    public void passMonth() {
-        monthsPassed++;
-        actualProduction += 4;
-        growLeaves();
-        if (actualProduction >= maxProduction){
-            actualProduction = maxProduction;
+    protected void checkMaxProduction() {
+        if (monthlyProduction >= maxProduction) {
+            monthlyProduction = maxProduction;
             speak();
         }
     }

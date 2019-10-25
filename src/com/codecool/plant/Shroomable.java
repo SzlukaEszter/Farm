@@ -5,4 +5,5 @@ public interface Shroomable {
     public void shroom();
     public void rot();
 
+    boolean isRotten();
 }

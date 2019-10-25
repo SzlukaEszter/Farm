@@ -1,20 +1,22 @@
 package com.codecool.plant;
 
+import com.codecool.RottenRiporter;
+
 public class Almond extends Plant implements Shroomable {
 
     private boolean isRotten = false;
     private int minProduction;
 
-    public Almond() {
-        super();
-        actualProduction = 50;
+    public Almond(RottenRiporter rottenRiporter) {
+        super(rottenRiporter);
+        monthlyProduction = 50;
         minProduction = 40;
     }
 
     @Override
     public void shroom() {
         if (RandomGenerator.getRandomChanceByPercent(8)) {
-            actualProduction += 10;
+            monthlyProduction += 10;
         }
     }
 
@@ -22,19 +24,35 @@ public class Almond extends Plant implements Shroomable {
     public void rot() {
         //TODO: set isRotten to false after month spent, implement RottenRiporter and check
         if (RandomGenerator.getRandomChanceByPercent(13)) {
-            actualProduction -= 18;
+            monthlyProduction -= 18;
             isRotten = true;
         }
     }
 
+    @Override
+    public boolean isRotten() {
+        return isRotten;
+    }
+    @Override
+    protected void defaultSettingsForProduction(){
+        monthlyProduction += 4;
+        actualProduction = monthlyProduction;
+        isRotten = false;
+    }
+
+
     public void passMonth() {
         //TODO: refactor - extract into multiple methods
-        isRotten = false;
-        actualProduction += 4;
+        defaultSettingsForProduction();
         shroom();
         rot();
-        if (actualProduction < minProduction) {
-            actualProduction *= 2;
+        checkMinProduction();
+        checkForRotten();
+    }
+
+    private void checkMinProduction(){
+        if (monthlyProduction < minProduction) {
+            monthlyProduction *= 2;
         }
     }
 }
