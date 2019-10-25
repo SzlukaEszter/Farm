@@ -20,7 +20,6 @@ public class Spruce extends EverGreen implements Shroomable {
 
     @Override
     public void rot() {
-        //TODO: set isRotten to false after month spent, implement RottenRiporter and check
         if (RandomGenerator.getRandomChanceByPercent(4)) {
             monthlyProduction -= 20;
             isRotten = true;
@@ -41,7 +40,6 @@ public class Spruce extends EverGreen implements Shroomable {
 
     @Override
     public void passMonth() {
-        //TODO: refactor - extract into multiple methods
         defaultSettingsForProduction();
         shroom();
         rot();

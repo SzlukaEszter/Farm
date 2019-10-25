@@ -22,7 +22,6 @@ public class Almond extends Plant implements Shroomable {
 
     @Override
     public void rot() {
-        //TODO: set isRotten to false after month spent, implement RottenRiporter and check
         if (RandomGenerator.getRandomChanceByPercent(13)) {
             monthlyProduction -= 18;
             isRotten = true;
@@ -42,7 +41,6 @@ public class Almond extends Plant implements Shroomable {
 
 
     public void passMonth() {
-        //TODO: refactor - extract into multiple methods
         defaultSettingsForProduction();
         shroom();
         rot();
