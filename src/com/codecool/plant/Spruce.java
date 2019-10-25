@@ -25,13 +25,11 @@ public class Spruce extends EverGreen implements Shroomable {
 
     @Override
     public void passMonth() {
-        //TODO: rafactor - extract into multiple methods
+        //TODO: refactor - extract into multiple methods
         isRotten = false;
         monthsPassed++;
         actualProduction += 4;
-        if (monthsPassed % 5 == 0) {
-            growLeaves();
-        }
+        growLeaves();
         shroom();
         rot();
         if (actualProduction >= maxProduction) {

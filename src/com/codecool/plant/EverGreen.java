@@ -4,9 +4,12 @@ public abstract class EverGreen extends Plant{
 
     protected int maxProduction = 70;
     protected boolean isRotten = false;
+    protected int monthsPassed = 0;
 
     public void growLeaves(){
-        actualProduction += 8;
+        if (monthsPassed % 5 == 0){
+            actualProduction += 8;
+        }
     }
 
     public void speak(){
@@ -17,10 +20,7 @@ public abstract class EverGreen extends Plant{
     public void passMonth() {
         monthsPassed++;
         actualProduction += 4;
-
-        if (monthsPassed % 5 == 0){
-            growLeaves();
-        }
+        growLeaves();
         if (actualProduction >= maxProduction){
             actualProduction = maxProduction;
             speak();
