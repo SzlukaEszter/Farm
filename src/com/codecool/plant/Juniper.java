@@ -4,7 +4,7 @@ public class Juniper extends EverGreen{
 
     public Juniper(){
         super();
-        monthlyProduction = 14;
+        actualProduction = 14;
     }
 
 

@@ -1,16 +1,16 @@
 package com.codecool.plant;
 
-public class Spruce extends EverGreen implements Shroomable{
+public class Spruce extends EverGreen implements Shroomable {
 
-    public Spruce(){
+    public Spruce() {
         super();
-        monthlyProduction = 26;
+        actualProduction = 26;
     }
 
     @Override
     public void shroom() {
-        if (RandomGenerator.getRandomChanceByPercent(5)){
-            monthlyProduction += 15;
+        if (RandomGenerator.getRandomChanceByPercent(5)) {
+            actualProduction += 15;
         }
     }
 
@@ -18,8 +18,25 @@ public class Spruce extends EverGreen implements Shroomable{
     public void rot() {
         //TODO: set isRotten to false after month spent, implement RottenRiporter and check
         if (RandomGenerator.getRandomChanceByPercent(4)) {
-            monthlyProduction -=20;
+            actualProduction -= 20;
             isRotten = true;
+        }
+    }
+
+    @Override
+    public void passMonth() {
+        //TODO: rafactor - extract into multiple methods
+        isRotten = false;
+        monthsPassed++;
+        actualProduction += 4;
+        if (monthsPassed % 5 == 0) {
+            growLeaves();
+        }
+        shroom();
+        rot();
+        if (actualProduction >= maxProduction) {
+            actualProduction = maxProduction;
+            speak();
         }
     }
 }

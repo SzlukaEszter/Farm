@@ -6,7 +6,7 @@ public abstract class EverGreen extends Plant{
     protected boolean isRotten = false;
 
     public void growLeaves(){
-        monthlyProduction += 8;
+        actualProduction += 8;
     }
 
     public void speak(){
@@ -16,18 +16,15 @@ public abstract class EverGreen extends Plant{
     @Override
     public void passMonth() {
         monthsPassed++;
-        monthlyProduction += 4;
+        actualProduction += 4;
 
         if (monthsPassed % 5 == 0){
             growLeaves();
         }
-        if (monthlyProduction >= maxProduction){
-            monthlyProduction = maxProduction;
+        if (actualProduction >= maxProduction){
+            actualProduction = maxProduction;
             speak();
         }
     }
 
-    protected void calculateActualProduction(){
-        actualProduction = monthlyProduction;
-    }
 }
