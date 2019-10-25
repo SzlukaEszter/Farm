@@ -7,6 +7,7 @@ public abstract class Plant {
     protected int monthsPassed = 0;
 
     public void passMonth()
+            // Todo override where needed
     {
         monthlyProduction += 4;
         actualProduction = monthlyProduction;
